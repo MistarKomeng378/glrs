@@ -47,8 +47,8 @@ function tp_initiate_grid()
     var columns_tp = [];
     var options_tp = [];
     columns_tp = [
-        {id:"tpcode", name:"TR Code", field:"tpcode",width:85}
-        ,{id:"tpname", name:"Type Reksadana", field:"tpname",width:250}
+        {id:"tpcode", name:"MM Fund Id", field:"tpcode",width:85}
+        ,{id:"tpname", name:"MM Fund Name", field:"tpname",width:250}
     ];
 
     options_tp = {
@@ -65,7 +65,7 @@ function tp_initiate_grid()
 function tp_initiate_dlg()
 {
     $("#tp_dlg").dialog({ 
-            title:        'Parameter Reksadana'
+            title:        'MM Fund Type'
         ,    width:        350
         ,    height:        200
         ,    autoOpen:    false
@@ -109,7 +109,7 @@ function tp_save_data()
     var tpsave_post = $.post(uri+'/index.php/creksadana/save_data',{
         tp_code:$("#tp_i_tp_code_dlg").val(),//ini
         tp_name:$("#tp_i_tp_name_dlg").val(),
-        tp_ket:$("#tp_i_tp_ket_dlg").val()
+        //tp_ket:$("#tp_i_tp_ket_dlg").val()
         
     },function(tpsave_data) { });
     tpsave_post.done(function(tpsave_msg){
@@ -134,7 +134,7 @@ function tp_reset_dlg()
 {        
     $("#tp_i_tp_code_dlg").val('');
     $("#tp_i_tp_name_dlg").val('');
-    $("#tp_i_tp_ket_dlg").val('');
+    //$("#tp_i_tp_ket_dlg").val('');
 }
 function tp_get_data_dlg(p_tp)
 {
@@ -152,7 +152,7 @@ function tp_get_data_dlg(p_tp)
         {
             $("#tp_i_tp_code_dlg").val(tp_msg.r_data[0].tpcode);
             $("#tp_i_tp_name_dlg").val(tp_msg.r_data[0].tpname);
-            $("#tp_i_tp_ket_dlg").val(tp_msg.r_data[0].tpket);
+            //$("#tp_i_tp_ket_dlg").val(tp_msg.r_data[0].tpket);
         }               
         c_status('tp',0);
     });

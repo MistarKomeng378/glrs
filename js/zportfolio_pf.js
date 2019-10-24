@@ -113,7 +113,7 @@ function pf_initiate_dlg_new()
     $("#pf_dlg_new").dialog({ 
             title:        'Portfolio'
         ,    width:        560
-        ,    height:        410
+        ,    height:        450
         ,    autoOpen:    false
         ,   resizable: false
         ,    closeOnEsc:    true
@@ -243,7 +243,7 @@ function pf_reset_dlg()
     $("#pf_s_active_dlg").val('Y');
     $("#pf_i_time_dlg").val('00:00');
     $("#pf_s_mm_dlg").val('N');
-    $("#pf_s_type_dlg").val('RDN');
+    $("#pf_s_type_dlg").val('RDN'); 
     $("#pf_i_pdec_dlg").val('3');
     $("#pf_s_ndec_dlg").val('4');
     $("#pf_s_udec_dlg").val('3');
@@ -278,7 +278,7 @@ function pf_get_data_dlg(p_pf)
             $("#pf_s_active_dlg").val(pf_msg.r_data[0].flag);
             $("#pf_i_time_dlg").val(pf_msg.r_data[0].time);
             $("#pf_s_mm_dlg").val(pf_msg.r_data[0].mm);
-            $("#pf_s_type_dlg").val(pf_msg.r_data[0].t);
+            $("#pf_s_type_dlg").val(pf_msg.r_data[0].mmtype);
             $("#pf_i_pdec_dlg").val(pf_msg.r_data[0].pdec);
             $("#pf_s_ndec_dlg").val(pf_msg.r_data[0].ndec);
             $("#pf_s_udec_dlg").val(pf_msg.r_data[0].udec);
@@ -312,7 +312,7 @@ function pf_search(p_search)
            d["flag"] = data_search_pf[i].flag; 
            d["time"] = data_search_pf[i].time; 
            d["mm"] = data_search_pf[i].mm; 
-           d["t"] = data_search_pf[i].t; 
+           d["mmtype"] = data_search_pf[i].mmtype;
            d["pdec"] = data_search_pf[i].pdec; 
            d["ndec"] = data_search_pf[i].ndec; 
            d["udec"] = data_search_pf[i].udec;  

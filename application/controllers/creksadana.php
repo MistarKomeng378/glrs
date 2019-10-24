@@ -61,7 +61,7 @@ class Creksadana extends CI_Controller {
                 
         $this->load->model("M_reksadana");      
         $this->data['r_rows']=0;
-        $this->data['r_data']=$this->M_reksadana->save_data($param['tp_code'],$param['tp_name'],$param['tp_ket']); 
+        $this->data['r_data']=$this->M_reksadana->save_data($param['tp_code'],$param['tp_name']); 
         echo 1;
        
 

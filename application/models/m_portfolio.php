@@ -45,6 +45,13 @@ class M_portfolio extends CI_Model {
         $query=$this->db->query($str_sql);
         return $query->result_array();
     }
+
+    function list_mm_fund_type()   
+    {
+        $str_sql = "EXEC gw_portfolio_mm_fund_type_list";
+        $query=$this->db->query($str_sql);
+        return $query->result_array();
+    }
 }
 
 ?>

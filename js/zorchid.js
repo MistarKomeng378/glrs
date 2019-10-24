@@ -65,7 +65,7 @@ function oc_initiate_grid()
 function oc_initiate_dlg()
 {
     $("#oc_dlg").dialog({ 
-            title:        'Orchid Parameter'
+            title:        'Orchid Type'
         ,    width:        350
         ,    height:        200
         ,    autoOpen:    false

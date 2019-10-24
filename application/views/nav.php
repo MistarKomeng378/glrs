@@ -10,7 +10,7 @@
                 <li><a href="#" onclick="c_showpage('f_ml','ml_show');">Mail Sender</a></li>
                 <li><a href="#" onclick="c_showpage('f_ui','ui_show');">Unit Issued</a></li>
                 <!--Add By MistarKomeng-->
-                <!--<li><a href="#" onclick="c_showpage('f_tp','tp_show');">Parameter Reksadana</a></li>-->
+                <li><a href="#" onclick="c_showpage('f_tp','tp_show');">MM Fund Type</a></li>
                 <li><a href="#" onclick="c_showpage('f_oc','oc_show');">Orchid Type</a></li>
                 <li><a href="#" onclick="c_showpage('f_ock','ock_show');">Orchid Kind</a></li>
 

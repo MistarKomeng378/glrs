@@ -38,6 +38,7 @@ class C extends CI_Controller {
             $this->load->model("M_portfolio");
             $this->data['r_type']=$this->M_portfolio->list_orchid_type();
             $this->data['r_kind']=$this->M_portfolio->list_orchid_kind();
+            $this->data['mm_id']=$this->M_portfolio->list_mm_fund_type();
         }
         $this->load->view($page,$this->data);  
     }

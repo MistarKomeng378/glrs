@@ -266,6 +266,7 @@
     <div id="f_tp" style="padding:0; border: 1px solid #ACACAC;width: 100%; display:none;" ></div>
     <div id="f_oc" style="padding:0; border: 1px solid #ACACAC;width: 100%; display:none;" ></div>
     <div id="f_ock" style="padding:0; border: 1px solid #ACACAC;width: 100%; display:none;" ></div>
+    <div id="f_mf" style="padding:0; border: 1px solid #ACACAC;width: 100%; display:none;" ></div>
     <?php }?>
     <?php if ( ($sess['lvl']<=7 && $sess['lvl_sub']==0) || $sess['lvl']<0){?> 
     <div id="f_fu" style="padding:0; border: 1px solid #ACACAC;width: 520px; display:none;" ></div>    
