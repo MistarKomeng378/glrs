@@ -1,0 +1,1 @@
+jsmin <fulljslint.js >jslint.js "(c)2002 Douglas Crockford"

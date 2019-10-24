@@ -1,0 +1,21 @@
+BODY, TD {
+  padding:0;
+  margin:0;
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+  font-size:   100%;
+  *font-size:  80%;
+}
+
+.up_line{
+    border-top: 1px solid #969696;
+}
+
+.down_line{
+    border-top: 1px dotted  #969696;
+    border-bottom: 1px dotted #969696;    
+}
+
+.up_down_line{
+    border-top: 1px dotted  #969696;
+    border-bottom: 1px dotted #969696;    
+}

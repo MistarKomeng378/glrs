@@ -1,0 +1,23 @@
+#west_toc  a,#west_toc a:active{
+    text-decoration: none;
+}
+#west_toc a:hover {
+    text-decoration:underline;
+}
+#logo {
+    font: 2em Georgia, "Times New Roman", Times, serif;
+    color: #FFF;
+    background: #fff url(../img/cimbniaga.png) left top no-repeat;
+    letter-spacing: 1px;
+    font-weight: bold;
+    padding: 0.5em 15px 2px;
+}
+.tb_title{
+    font-weight: bold;
+    color: #580000;
+    font-size: 120%;
+}
+.img_hide{display: none;}
+.img_show{display: block;}
+.read_only{background-color: #E0E0E0;}
+.cell_right{ text-align: right;}

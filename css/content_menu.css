@@ -1,0 +1,51 @@
+UL, OL {
+    }
+    LI {
+        padding-top: 2px;
+        padding-bottom: 3px;
+    }
+UL#TOC {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    }
+    #TOC LI {
+        padding: 2px 0;
+        }
+        #TOC A {
+            color: #000;
+            display: block;
+            padding: 1px 0 2px 3px;
+            }
+            #TOC A:visited {
+                color: #000;
+            }
+            #TOC A:hover {
+                color: #000;
+                background-color: #FEC;
+                text-decoration: none;
+            }
+        #TOC LI UL {
+            list-style: none;
+            margin: 0;
+            margin-left: 1em;
+            padding: 0.25em 0;
+            }
+            #TOC LI UL LI {
+                font-size: 0.9em;
+                padding: 1px 0;
+                }
+                #TOC LI UL LI A {
+                    padding-top: 0px;
+                    padding-bottom: 1px;
+                }
+
+    #TOC .tocBtn {
+        float:            left;
+        margin-left:    -17px; /* move button into left-margin */
+        margin-top:        2px;
+        width:            16px;
+        height:            16px;
+        cursor:            pointer;
+        background:        url(../img/icon_tree_off.gif) no-repeat center;
+    }
