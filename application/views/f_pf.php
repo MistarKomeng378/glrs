@@ -59,19 +59,9 @@
                 <option value="Y">Y</option>
             </select> - Type:
             <select id=pf_s_type_dlg>
-            <?php 
-                foreach($mm_id as $xitem1)
-                    echo "<option value=\"{$xitem1['mm_id']}\">{$xitem1['mm_name']}</option>";
-            ?>
+           
             </select>
-            <!--
-            <select id="pf_s_type_dlg">
-                <option value="RDN">REKSADANA</option>
-                <option value="LNK">UNIT LINK</option>
-                <option value="DP">DANA PENSIUN</option>
-                <option value="OTH">OTHERS</option>
-            </select>
-            -->
+           
             </td>
         </tr>
         <!--///////////////// Edit By MistarKomeng ////////////////////-->
@@ -79,16 +69,10 @@
             <td valign="top">ORCHID Type-Kind</td>
             <td valign="top">:</td>
             <td><select id=pf_s_otype_dlg>
-            <?php 
-                foreach($r_type as $xitem1)
-                    echo "<option value=\"{$xitem1['type_id']}\">{$xitem1['type_name']}</option>";
-            ?>
+           
             </select>
             <select id="pf_s_okind_dlg">
-            <?php 
-                foreach($r_kind as $xitem1)
-                    echo "<option value=\"{$xitem1['kind_id']}\">{$xitem1['kind_name']}</option>";
-            ?>
+            
             </select>
             </td>
         </tr>

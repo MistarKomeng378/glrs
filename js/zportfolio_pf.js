@@ -6,6 +6,7 @@ var select_mode_pf = 0;
 
 function pf_initiate()
 {
+    
     $("#pf_i_curyear_dlg").datepicker();$("#pf_i_curyear_dlg").datepicker( "option", "dateFormat", 'dd-mm-yy' ); 
     pf_initiate_grid();
     pf_initiate_dlg_new();
@@ -16,6 +17,8 @@ function pf_initiate()
         ipt_blank_select_pf(false)
         ipt_enable($("#pf_i_pf_code_dlg"),true);
         $("#pf_dlg_new").dialog('open');
+
+        getType();
     });
     $("#pf_b_edit").click(function(){
         var pf_selected_row  = grid_pf.getActiveCell();
@@ -147,6 +150,7 @@ function pf_load_data(p_fm)
            d["flag"] = pf_msg.r_data[i].flag; 
            d["time"] = pf_msg.r_data[i].time; 
            d["mm"] = pf_msg.r_data[i].mm; 
+           d["mmname"] = pf_msg.r_data[i].mmname; 
            d["t"] = pf_msg.r_data[i].t; 
            d["pdec"] = pf_msg.r_data[i].pdec; 
            d["ndec"] = pf_msg.r_data[i].ndec; 
@@ -168,6 +172,7 @@ function pf_load_data(p_fm)
            e["flag"] = pf_msg.r_data[i].flag; 
            e["time"] = pf_msg.r_data[i].time; 
            e["mm"] = pf_msg.r_data[i].mm; 
+           e["mmname"] = pf_msg.r_data[i].mmname; 
            e["t"] = pf_msg.r_data[i].t; 
            e["pdec"] = pf_msg.r_data[i].pdec; 
            e["ndec"] = pf_msg.r_data[i].ndec; 
@@ -278,7 +283,7 @@ function pf_get_data_dlg(p_pf)
             $("#pf_s_active_dlg").val(pf_msg.r_data[0].flag);
             $("#pf_i_time_dlg").val(pf_msg.r_data[0].time);
             $("#pf_s_mm_dlg").val(pf_msg.r_data[0].mm);
-            $("#pf_s_type_dlg").val(pf_msg.r_data[0].mmtype);
+            $("#pf_s_type_dlg").val(pf_msg.r_data[0].t);
             $("#pf_i_pdec_dlg").val(pf_msg.r_data[0].pdec);
             $("#pf_s_ndec_dlg").val(pf_msg.r_data[0].ndec);
             $("#pf_s_udec_dlg").val(pf_msg.r_data[0].udec);
@@ -312,7 +317,8 @@ function pf_search(p_search)
            d["flag"] = data_search_pf[i].flag; 
            d["time"] = data_search_pf[i].time; 
            d["mm"] = data_search_pf[i].mm; 
-           d["mmtype"] = data_search_pf[i].mmtype;
+           d["mmname"] = data_search_pf[i].mmname;
+           d["t"] = data_search_pf[i].t;
            d["pdec"] = data_search_pf[i].pdec; 
            d["ndec"] = data_search_pf[i].ndec; 
            d["udec"] = data_search_pf[i].udec;  
@@ -329,4 +335,30 @@ function pf_search(p_search)
     grid_pf.invalidateAllRows();
     grid_pf.updateRowCount();
     grid_pf.render();
+}
+
+function getType() {
+    $.get(uri+'/index.php/cportfolio/getType', function(data, status){
+        var myObj = JSON.parse(data);
+        var mm_id = myObj.mm_id;
+        
+        var r_type = myObj.r_type;
+
+        var r_kind = myObj.r_kind;
+
+        for (let index = 0; index < mm_id.length; index++) {
+            $('#pf_s_type_dlg option[value="'+mm_id[index].mm_id+'"]').remove();
+            $('#pf_s_type_dlg').append('<option value="'+mm_id[index].mm_id+'">'+mm_id[index].mm_name+'</option>');
+        }
+
+        for (let index = 0; index < r_type.length; index++) {
+            $('#pf_s_otype_dlg option[value="'+r_type[index].type_id+'"]').remove();
+            $('#pf_s_otype_dlg').append('<option value="'+r_type[index].type_id+'">'+r_type[index].type_name+'</option>');
+        }
+
+        for (let index = 0; index < r_kind.length; index++) {
+            $('#pf_s_okind_dlg option[value="'+r_kind[index].kind_id+'"]').remove();
+            $('#pf_s_okind_dlg').append('<option value="'+r_kind[index].kind_id+'">'+r_kind[index].kind_name+'</option>');
+        }
+    });
 }
