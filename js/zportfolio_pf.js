@@ -34,6 +34,8 @@ function pf_initiate()
                 ipt_pf_load('ALL',$("#pf_s_pfgl_dlg"), 2);
                 $("#pf_dlg_new").dialog('open');
                 //$("#pf_s_pfgl_dlg").val('');
+               
+                getType();
             }
         }
         else alert('Choose the portfolio fisrt!');
@@ -62,6 +64,8 @@ function pf_initiate()
         ipt_pf_load('ALL',$("#pf_s_pfgl_dlg"), 2);
         $("#pf_dlg_new").dialog('open');
         //$("#pf_s_pfgl_dlg").val('');
+
+        getType();
     });
 }
 function pf_show()
