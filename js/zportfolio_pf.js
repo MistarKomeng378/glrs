@@ -21,7 +21,9 @@ function pf_initiate()
         getType();
     });
     $("#pf_b_edit").click(function(){
-        var pf_selected_row  = grid_pf.getActiveCell();
+        var pf_selected_row  = grid_pf.getActiveCell(); 
+        console.log(pf_selected_row);
+        
         if(pf_selected_row)
         {
             if(pf_selected_row.row>=data_pf.length)
@@ -35,7 +37,7 @@ function pf_initiate()
                 $("#pf_dlg_new").dialog('open');
                 //$("#pf_s_pfgl_dlg").val('');
                
-                getType();
+                
             }
         }
         else alert('Choose the portfolio fisrt!');
@@ -296,7 +298,9 @@ function pf_get_data_dlg(p_pf)
             $("#pf_s_mailval_dlg").val(pf_msg.r_data[0].mailval);
             $("#pf_s_otype_dlg").val(pf_msg.r_data[0].ftype);
             $("#pf_s_okind_dlg").val(pf_msg.r_data[0].fkind);
-            $("#pf_s_tb_dlg").val(pf_msg.r_data[0].crpt);
+            $("#pf_s_tb_dlg").val(pf_msg.r_data[0].crpt);            
+            getType(pf_msg.r_data[0].ftype, pf_msg.r_data[0].t, pf_msg.r_data[0].fkind);
+            
         }               
         c_status('pf',0);
     });
@@ -341,7 +345,9 @@ function pf_search(p_search)
     grid_pf.render();
 }
 
-function getType() {
+function getType(otype = null, stype = null, rkind = null) {
+    console.log(otype+"-"+stype+"-"+rkind);
+    
     $.get(uri+'/index.php/cportfolio/getType', function(data, status){
         var myObj = JSON.parse(data);
         var mm_id = myObj.mm_id;
@@ -351,18 +357,31 @@ function getType() {
         var r_kind = myObj.r_kind;
 
         for (let index = 0; index < mm_id.length; index++) {
+            var selected = "";
+            if(stype==mm_id[index].mm_id){
+                selected = "selected";
+            }
+
             $('#pf_s_type_dlg option[value="'+mm_id[index].mm_id+'"]').remove();
-            $('#pf_s_type_dlg').append('<option value="'+mm_id[index].mm_id+'">'+mm_id[index].mm_name+'</option>');
+            $('#pf_s_type_dlg').append('<option '+selected+' value="'+mm_id[index].mm_id+'">'+mm_id[index].mm_name+'</option>');
         }
 
         for (let index = 0; index < r_type.length; index++) {
+            var selected = "";
+            if(otype==r_type[index].type_id){
+                selected = "selected";
+            }
             $('#pf_s_otype_dlg option[value="'+r_type[index].type_id+'"]').remove();
-            $('#pf_s_otype_dlg').append('<option value="'+r_type[index].type_id+'">'+r_type[index].type_name+'</option>');
+            $('#pf_s_otype_dlg').append('<option '+selected+' value="'+r_type[index].type_id+'">'+r_type[index].type_name+'</option>');
         }
 
         for (let index = 0; index < r_kind.length; index++) {
+            var selected = "";
+            if(rkind==r_kind[index].kind_id){
+                selected = "selected";
+            }
             $('#pf_s_okind_dlg option[value="'+r_kind[index].kind_id+'"]').remove();
-            $('#pf_s_okind_dlg').append('<option value="'+r_kind[index].kind_id+'">'+r_kind[index].kind_name+'</option>');
+            $('#pf_s_okind_dlg').append('<option '+selected+' value="'+r_kind[index].kind_id+'">'+r_kind[index].kind_name+'</option>');
         }
     });
 }
