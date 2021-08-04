@@ -72,7 +72,8 @@ class Cportfolio extends CI_Controller {
         $this->load->model("M_portfolio");      
         $this->data['r_rows']=0;
         $this->data['r_data']=$this->M_portfolio->save_data($param['pf_code'],$param['pf_name'],$param['pf_fm'],$pf_cy,$param['pf_cur'],$param['pf_active'],$param['pf_ph'],$param['pf_mm'],
-                $param['pf_type'],$param['pf_pdec'],$param['pf_ndec'],$param['pf_udec'],$param['pf_mail'],$filecode,$param['pf_gl'],$param['pf_otype'],$param['pf_okind'],$param['pf_scode'],$param['pf_tb'],$param['pf_mailtb'],$param['pf_mailval']); 
+                $param['pf_type'],$param['pf_pdec'],$param['pf_ndec'],$param['pf_udec'],$param['pf_mail'],$filecode,$param['pf_gl'],$param['pf_otype'],$param['pf_okind'],$param['pf_scode'],
+                $param['pf_tb'],$param['pf_mailtb'],$param['pf_mailval'],$param['pf_xd_gl'],$param['pf_tb_gl'],$param['pf_bs_gl'],$param['pf_pl_gl']); //===> 20-05-2020
         echo 1;
     }
     function get_data()

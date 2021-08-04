@@ -109,11 +109,13 @@
             <td valign="top">Automatic Mail</td>
             <td valign="top">:</td>
             <td>
+                <!-- Setingan Saat Approve 20-05-2020 -->
+               <i> <b>Approve</b> </i>
                 <table>
                     <tr>
                         <td align="center">Financial Book</td><td align="center">|</td>
                         <td align="center">Trial Balance</td><td align="center">|</td>
-                        <td align="center">Valuation</td>
+                        <td align="center">Valuation</td><td align="center">
                     </tr>
                     <tr>
                         <td align="center">
@@ -134,8 +136,47 @@
                                 <option value="1">Y</option>
                             </select>
                         </td>
+                      
                     </tr>
-                </table>            
+                </table>
+                <br>
+                <!-- Setingan Saat GL Done  20-05-2020-->
+                <i><b>GL Done</b></i>
+                <table>
+                    <tr>
+                        <td align="center">X.D.1</td><td align="center">|</td>
+                        <td align="center">Trial Balance</td><td align="center">|</td>
+                        <td align="center">Balance Sheet</td><td align="center">|</td>
+                        <td align="center">Profit Loss</td><td align="center">
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <select id="pf_s_mailxd_gl_dlg">
+                                <option value="0">N</option>
+                                <option value="1">Y</option>
+                            </select>
+                        </td><td align="center">|</td>
+                        <td align="center">
+                            <select id="pf_s_mailtb_gl_dlg">
+                                <option value="0">N</option>
+                                <option value="1">Y</option>
+                            </select>
+                        </td><td align="center">|</td>
+                        <td align="center">
+                            <select id="pf_s_mailbs_gl_dlg">
+                                <option value="0">N</option>
+                                <option value="1">Y</option>
+                            </select>
+                        </td>
+                        </td><td align="center">|</td>
+                        <td align="center">
+                            <select id="pf_s_mailpl_gl_dlg">
+                                <option value="0">N</option>
+                                <option value="1">Y</option>
+                            </select>
+                        </td>                        
+                    </tr>
+                </table>
             </td>
         </tr>
         <tr id="pf_tr_pfgl" style="">

@@ -15,10 +15,10 @@ class M_portfolio extends CI_Model {
         return $query->result_array();
     }
     
-    function save_data($pf_code,$pf_name,$fm_code,$pf_cy,$pf_cur,$pf_active,$pf_ph,$pf_mm,$pf_type,$pf_pdec,$pf_ndec,$pf_udec,$pf_mail,$filecode,$pf_gl,$pf_otype,$pf_okind,$scode='',$tb='',$pf_mailtb=0,$pf_mailval=0)   
+    function save_data($pf_code,$pf_name,$fm_code,$pf_cy,$pf_cur,$pf_active,$pf_ph,$pf_mm,$pf_type,$pf_pdec,$pf_ndec,$pf_udec,$pf_mail,$filecode,$pf_gl,$pf_otype,$pf_okind,$scode='',$tb='',$pf_mailtb=0,$pf_mailval=0,$pf_xd_gl=0,$pf_tb_gl=0,$pf_bs_gl=0,$pf_pl_gl=0)   
     {
-        $str_sql = "EXEC gw_portfolio_save '{$pf_code}','{$pf_name}','{$fm_code}','{$pf_cy}','{$pf_cur}','{$pf_active}','{$pf_ph}','{$pf_mm}','{$pf_type}','{$pf_pdec}','{$pf_ndec}','{$pf_udec}','{$pf_mail}','{$filecode}','{$pf_gl}','{$pf_otype}','{$pf_okind}','{$scode}','{$tb}','{$pf_mailtb}','{$pf_mailval}'";
-        $this->db->query($str_sql); //echo $str_sql;
+        $str_sql = "EXEC gw_portfolio_save '{$pf_code}','{$pf_name}','{$fm_code}','{$pf_cy}','{$pf_cur}','{$pf_active}','{$pf_ph}','{$pf_mm}','{$pf_type}','{$pf_pdec}','{$pf_ndec}','{$pf_udec}','{$pf_mail}','{$filecode}','{$pf_gl}','{$pf_otype}','{$pf_okind}','{$scode}','{$tb}','{$pf_mailtb}','{$pf_mailval}','{$pf_xd_gl}','{$pf_tb_gl}','{$pf_bs_gl}','{$pf_pl_gl}'";
+        $this->db->query($str_sql); //echo $str_sql;  // ==>20-05-2020
     }
     function get_data($pf_code)   
     {

@@ -82,14 +82,14 @@ foreach($row_all as $xitemall)
         }
    }
     //
-    $tsql = "delete from gw_rpt_gl_ready where portfoliocode='{$pf}' and valuationdate='{$dt}'"; // echo $tsql;
-    $stmt = sqlsrv_query( $conn, $tsql);
-    sqlsrv_free_stmt( $stmt);
+    // $tsql = "delete from gw_rpt_gl_ready where portfoliocode='{$pf}' and valuationdate='{$dt}'"; // echo $tsql;
+    // $stmt = sqlsrv_query( $conn, $tsql);
+    // sqlsrv_free_stmt( $stmt);
     
-    $tsql = "insert into gw_rpt_gl_log(portfoliocode,valuationdate,approve_by,create_date)
-            values('{$pf}','{$dt}','{$xitemall['approve_by']}',getdate())"; // echo $tsql;
-    $stmt = sqlsrv_query( $conn, $tsql);
-    sqlsrv_free_stmt( $stmt);
+    // $tsql = "insert into gw_rpt_gl_log(portfoliocode,valuationdate,approve_by,create_date)
+            // values('{$pf}','{$dt}','{$xitemall['approve_by']}',getdate())"; // echo $tsql;
+    // $stmt = sqlsrv_query( $conn, $tsql);
+    // sqlsrv_free_stmt( $stmt);
     
 }
 sqlsrv_close( $conn); 

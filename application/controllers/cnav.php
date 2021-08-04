@@ -46,6 +46,9 @@ class Cnav extends CI_Controller {
         $sdt = change_dt_format(remove_bad_sql(str_sql_string($param["dt"])),512);
         $this->load->model("M_nav");      
         $r_data=$this->M_nav->check_status($param['pf'],$sdt); 
+        // echo "<pre>";
+        // print_r($r_data);
+        // echo "</pre>";
         $arr_status=array('n_d'=>'','n_d1'=>'','n_s'=>'0','g_d'=>'','g_d1'=>'','g_s'=>'0v','u_d'=>'','u_d1'=>'','c_n'=>'','c_g'=>'','c_y'=>'','c_u'=>'0');
         if(count($r_data)>0)
         {
@@ -70,6 +73,7 @@ class Cnav extends CI_Controller {
         $this->data['r_data']=$arr_status;
         echo json_encode($this->data);
     }   
+
     function get_pre_approval ()
     {
         if($this->data['sess']['uid']=='')
@@ -78,6 +82,20 @@ class Cnav extends CI_Controller {
             return 0;
         }   
         $param=$this->input->post(); 
+        // gugum gumilar 04 mei 2020
+        $dts = change_dt_format(remove_bad_sql(str_sql_string($param["dt"])),512);
+        if(isset($param['sdt']))
+            $sdt = change_dt_format(remove_bad_sql(str_sql_string($param["sdt"])),512);     
+        else
+            $sdt = date_format(date_create($dts),'1/1/Y');
+        $syear=date_format(date_create($dts),'1/1/Y');
+        $smonth=date_format(date_create($dts),'m/1/Y');
+        $param['rt']='All';
+        //print_r($param);
+        // echo $syear;
+        // die();
+         // end gugum gumilar 04 mei 2020
+        
         if(is_array($param))
             sql_quot_all($param);   
         $dt = change_dt_format(remove_bad_sql(str_sql_string($param["dt"])),512);     
@@ -117,13 +135,28 @@ class Cnav extends CI_Controller {
             'prev'=>number_format($r_nav[0]['NAV_PREV'],4,'.',','),'prevdiff'=>number_format($r_nav[0]['DIFF_PREV'],4,'.',','),
             'u'=>($r_nav[0]['NAV_INVEST']-$r_nav[0]['NAV_PREV']>=0)?1:0,'c'=>number_format($r_nav[0]['CHANGEPCT'],4,'.',','),'a'=>$r_nav[0]['ALERT'],'pty'=>$r_section['r_pf'][0]['t']);
         $r_cat1=array();
+        // gugum gumiar 30 april 2020
+        $diff_cat = array();
+        // end gugum gumilar 30 april 2020
         $str_html='';
-        foreach($r_cat as  $xitem)
+        foreach($r_cat as  $xitem){
             $str_html.="<tr bgcolor=\"#FFFFFF\"><td>{$xitem['ASSET']}</td><td align=\"right\">".number_format($xitem['INVESTVALUE'],4,'.',',')."</td><td align=\"right\">".number_format($xitem['GLVALUE'],4,'.',',')."</td><td align=\"right\">".number_format($xitem['DIFFRENT'],4,'.',',')."</td></tr>\n";
+            // gugum gumilar 30 april 2020
+            array_push($diff_cat,$xitem['ASSET']."|".number_format($xitem['DIFFRENT'],4,'.',','));
+            // end gugum gumilar 30 april 2020
+            }
         $this->data['s_cat']=$str_html;
+        //gugum gumilar 29 april 2020
+        $this->data['different_cat']=$diff_cat;
+        //end gugum gumilar 29 april 2020
         
-        
+        $this->load->model("M_rpt");
+
         $this->data['r_sect']=$this->load->view('rpt_nav_a',$r_section,true);
+
+        // gugum 5 mei 2020
+        // $this->data['r_balance']=$this->M_rpt->get_fin_bs($param['pf'],$syear,$dts,$param['rt']);
+        //end gugum 5 mei 2020
         
         $this->load->model("M_rpt"); 
         $r_val['r_data']=$this->M_rpt->get_fin_val($param['pf'],$dt); 
@@ -163,8 +196,40 @@ class Cnav extends CI_Controller {
                     <td align=\"right\">" . (isset($r_fi[0]["gross"])?number_format($r_fi[0]["net"],2,'.',','):'') .  "</td>
                 </tr>
             </table>";
+        
         echo json_encode($this->data);
     }
+    // gugum gumilar 14 mei 2020
+    function getaktiva_pasiva(){
+        $param=$this->input->post();
+        $dts = change_dt_format(remove_bad_sql(str_sql_string($param["dt"])),512);
+        if(isset($param['sdt']))
+            $sdt = change_dt_format(remove_bad_sql(str_sql_string($param["sdt"])),512);     
+        else
+            $sdt = date_format(date_create($dts),'1/1/Y');
+        $syear=date_format(date_create($dts),'1/1/Y');
+        $smonth=date_format(date_create($dts),'m/1/Y');
+        $param['rt']='All';
+        $this->load->model("M_rpt");
+        $this->data['r_balance']=$this->M_rpt->get_fin_bs($param['pf'],$syear,$dts,$param['rt']);
+        
+        $tot1 = 0;
+        $tot2 = 0;
+        foreach ($this->data['r_balance'] as $dtb){
+            if($dtb['LEVEL01CODE']=='1'){
+                $tot1+=$dtb['BALANCE'];
+            }
+            if($dtb['LEVEL01CODE']=='2'){
+                $tot2+=$dtb['BALANCE'];
+            }
+        }
+        $diffbalance = $tot1 + $tot2;
+        $this->data['diffbalance']=$diffbalance;
+        // print_r($this->data['diffbalance']);
+        // die();
+        echo json_encode($this->data['diffbalance']);
+    }
+    // end gugum gumilar 14 mei 2020
     function approve()
     {
         if($this->data['sess']['uid']=='')

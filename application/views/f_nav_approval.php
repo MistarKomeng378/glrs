@@ -40,6 +40,7 @@
                     <td align="center"><span id="na_s_cur_year" style="font-weight: bold;"></span></td>
                 </tr>
             </table>
+            
             <table width="100%" bgcolor="#969696">
                 <tr bgcolor="#C0C0FF">
                     <th width="25%">Category</th>
@@ -83,3 +84,9 @@
         <div style="margin: 4px 2px 2px 2px; border: #800080 solid 1px;" id="na_d_viewtax" align="center"></div>
         <div style="margin: 4px 2px 2px 2px; border: #800080 solid 1px;" id="na_d_viewval"></div>
         <div style="margin: 4px 2px 2px 2px; border: #800080 solid 1px;" id="na_d_viewint"></div>
+        <div id="approv_dlg" style=" overflow:hidden; display:    none;padding:   0px;padding-top: 4px;">
+        <table id="approvalspv">
+            <tr><td>Username</td><td>:</td><td><input type="text" name="usr" id="usr"></td></tr>
+            <tr><td>Password</td><td>:</td><td><input type="password" name="pwd" id="pwd"></td></tr>
+            </table>
+        </div>

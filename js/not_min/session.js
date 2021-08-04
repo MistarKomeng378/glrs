@@ -2,7 +2,7 @@ var t;
 var t1;
 var dlg_login_is_show = false;
 //var is_do_login = false;
-var timer_cek_login = 120000;
+var timer_cek_login = 120000;  //120000
 //var timer_do_logout = 1800000;
 function initiate_session()
 {

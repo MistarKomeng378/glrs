@@ -104,6 +104,11 @@ function pf_initiate_grid()
         ,{id:"mail", name:"Mail Flag", field:"mail",width:50}
         ,{id:"mailtb", name:"Mail Flag TB", field:"mailtb",width:50}
         ,{id:"mailval", name:"Mail Flag Val", field:"mailval",width:50}
+        // 20-05-2020
+        ,{id:"mailxd_gl", name:"Mail Flag XD1", field:"mailxd_gl",width:50}
+        ,{id:"mailtb_gl", name:"Mail Flag TB", field:"mailtb_gl",width:50}
+        ,{id:"mailbs_gl", name:"Mail Flag BS", field:"mailbs_gl",width:50}
+        ,{id:"mailpl_gl", name:"Mail Flag PL", field:"mailpl_gl",width:50}
     ];
 
     options_pf = {
@@ -121,8 +126,8 @@ function pf_initiate_dlg_new()
 {
     $("#pf_dlg_new").dialog({ 
             title:        'Portfolio'
-        ,    width:        560
-        ,    height:        450
+        ,    width:        600
+        ,    height:        455
         ,    autoOpen:    false
         ,   resizable: false
         ,    closeOnEsc:    true
@@ -134,7 +139,7 @@ function pf_initiate_dlg_new()
     });
 }
 function pf_load_data(p_fm)
-{
+{    
     c_status('pf',1);
     var pf_post = $.post(uri+'/index.php/cportfolio/list_data',{fm:p_fm},function(pf_data) { },'json');
     pf_post.done(function(pf_msg){   
@@ -169,6 +174,11 @@ function pf_load_data(p_fm)
            d["ftype"] = pf_msg.r_data[i].ftype;
            d["fkind"] = pf_msg.r_data[i].fkind;
            d["tb"] = pf_msg.r_data[i].crpt;
+           //--20-05-2020
+           d["mailxd_gl"] = pf_msg.r_data[i].mailxd_gl;
+           d["mailtb_gl"] = pf_msg.r_data[i].mailtb_gl;
+           d["mailbs_gl"] = pf_msg.r_data[i].mailbs_gl;
+           d["mailpl_gl"] = pf_msg.r_data[i].mailpl_gl;
            var e = (data_search_pf[i] = {});     
            e["pfcode"] = pf_msg.r_data[i].pfcode;          
            e["pfname"] = pf_msg.r_data[i].pfname; 
@@ -191,6 +201,11 @@ function pf_load_data(p_fm)
            e["ftype"] = pf_msg.r_data[i].ftype;
            e["fkind"] = pf_msg.r_data[i].fkind;
            e["tb"] = pf_msg.r_data[i].crpt;
+           //--20-05-2020
+           d["mailxd_gl"] = pf_msg.r_data[i].mailxd_gl;
+           d["mailtb_gl"] = pf_msg.r_data[i].mailtb_gl;
+           d["mailbs_gl"] = pf_msg.r_data[i].mailbs_gl;
+           d["mailpl_gl"] = pf_msg.r_data[i].mailpl_gl;
         }       
         grid_pf.invalidateAllRows();
         grid_pf.updateRowCount();
@@ -224,7 +239,12 @@ function pf_save_data()
         pf_gl:$("#pf_s_pfgl_dlg").val(),
         pf_otype:$("#pf_s_otype_dlg").val(),
         pf_okind:$("#pf_s_okind_dlg").val(),
-        pf_tb:$("#pf_s_tb_dlg").val()
+        pf_tb:$("#pf_s_tb_dlg").val(),
+        //=========== 19-05-2020 MK
+        pf_xd_gl:$("#pf_s_mailxd_gl_dlg").val(),
+        pf_tb_gl:$("#pf_s_mailtb_gl_dlg").val(),        
+        pf_bs_gl:$("#pf_s_mailbs_gl_dlg").val(),
+        pf_pl_gl:$("#pf_s_mailpl_gl_dlg").val()
     },function(pfsave_data) { });
     pfsave_post.done(function(pfsave_msg){
         $("#pf_s_fm").val($("#pf_s_fm_dlg").val());
@@ -265,6 +285,11 @@ function pf_reset_dlg()
     $("#pf_s_otype_dlg").val(3);
     $("#pf_s_okind_dlg").val(1);
     $("#pf_s_tb_dlg").val(1);
+    //=========== 19-05-2020 MK
+    $("#pf_s_mailxd_gl_dlg").val('0');
+    $("#pf_s_mailtb_gl_dlg").val('0');
+    $("#pf_s_mailbs_gl_dlg").val('0');
+    $("#pf_s_mailpl_gl_dlg").val('0');
 }
 function pf_get_data_dlg(p_pf)
 {
@@ -298,7 +323,12 @@ function pf_get_data_dlg(p_pf)
             $("#pf_s_mailval_dlg").val(pf_msg.r_data[0].mailval);
             $("#pf_s_otype_dlg").val(pf_msg.r_data[0].ftype);
             $("#pf_s_okind_dlg").val(pf_msg.r_data[0].fkind);
-            $("#pf_s_tb_dlg").val(pf_msg.r_data[0].crpt);            
+            $("#pf_s_tb_dlg").val(pf_msg.r_data[0].crpt); 
+             //=========== 19-05-2020 MK
+            $("#pf_s_mailxd_gl_dlg").val(pf_msg.r_data[0].mailxd_gl);           
+            $("#pf_s_mailtb_gl_dlg").val(pf_msg.r_data[0].mailtb_gl);           
+            $("#pf_s_mailbs_gl_dlg").val(pf_msg.r_data[0].mailbs_gl);           
+            $("#pf_s_mailpl_gl_dlg").val(pf_msg.r_data[0].mailpl_gl);           
             getType(pf_msg.r_data[0].ftype, pf_msg.r_data[0].t, pf_msg.r_data[0].fkind);
             
         }               
@@ -338,6 +368,11 @@ function pf_search(p_search)
            d["ftype"] = data_search_pf[i].ftype;
            d["fkind"] = data_search_pf[i].fkind;
            d["tb"] = data_search_pf[i].tb;
+           //--20-05-2020
+           d["mailxd_gl"] = pf_msg.r_data[i].mailxd_gl;
+           d["mailtb_gl"] = pf_msg.r_data[i].mailtb_gl;
+           d["mailbs_gl"] = pf_msg.r_data[i].mailbs_gl;
+           d["mailpl_gl"] = pf_msg.r_data[i].mailpl_gl;
         }
     }       
     grid_pf.invalidateAllRows();

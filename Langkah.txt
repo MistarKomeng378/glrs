@@ -1,8 +1,0 @@
-langkah-langkah
-1. file Nav.php
-2. Buat file View
-3. Buka File main.php
-4. buka file Js yang berkaitan/Buat Js Baru
-5. Buat Controller
-6. Buat Model
-7. Buat Store Prosedur SQL Server 2008 R2
